@@ -1,6 +1,6 @@
 # Bienvenido al repositorio del proyecto SISDEGUA 👋
 
-![Portada del proyecto](assets/images/logo_sisdegua.jpeg)
+![Portada del proyecto](static/images/logo_sisdegua.jpeg)
 
 # Colaboradores
    - Ángel Antelmo Gutiérrez Gadea
