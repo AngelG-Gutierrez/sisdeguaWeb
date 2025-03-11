@@ -18,7 +18,7 @@
    pip install -r requirements.txt
    ```
 
-2. Start the app
+2. Start the web
 
    ```bash
     flask run --debug
