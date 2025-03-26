@@ -1,0 +1,20 @@
+{
+  "name": "sisdeguaweb",
+  "version": "1.0.0",
+  "description": "![Portada del proyecto](static/images/logo_sisdegua.jpeg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelG-Gutierrez/sisdeguaWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AngelG-Gutierrez/sisdeguaWeb/issues"
+  },
+  "homepage": "https://github.com/AngelG-Gutierrez/sisdeguaWeb#readme"
+}
