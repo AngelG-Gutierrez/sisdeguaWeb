@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/AngelG-Gutierrez/sisdeguaWeb/issues"
   },
-  "homepage": "https://github.com/AngelG-Gutierrez/sisdeguaWeb#readme"
+  "homepage": "https://github.com/AngelG-Gutierrez/sisdeguaWeb#readme",
+  "dependencies": {
+    "flask": "^0.2.10"
+  }
 }

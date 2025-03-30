@@ -11,7 +11,7 @@
     <header class="border-b border-black p-4">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-xl font-bold flex items-center">
-                <img src="/views/static/images/logo_sisdegua.png" alt="Logo" class="h-10 w-10 mr-2">
+                <img src="../static/images/logo_sisdegua.png" alt="Logo" class="h-10 w-10 mr-2">
                 SISDEGUA
             </a>
             <ul class="flex space-x-6 text-black font-medium">
@@ -19,7 +19,7 @@
                 <li><a href="#" class="hover:underline">Nosotros</a></li>
                 <li><a href="#" class="hover:underline">Estadísticas</a></li>
                 <li>
-                    <button class="px-4 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300">
+                    <button onclick="window.location.href='/login'" class="px-4 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300">
                         Iniciar Sesión
                     </button>
                 </li>
@@ -36,7 +36,8 @@
             </p>
             <div class="mt-6 flex space-x-4">
                 <button class="px-6 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300 font-medium">Conoce más</button>
-                <button class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
+                <button onclick="window.location.href='/login'"
+                class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
                     Iniciar Sesión <span class="ml-2">→</span>
                 </button>
             </div>
@@ -48,14 +49,15 @@
             </p>
             <div class="mt-6 flex space-x-4">
                 <button class="px-6 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300 font-medium">Conoce más</button>
-                <button class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
+                <button onclick="window.location.href='/login'"
+                class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
                     Iniciar Sesión <span class="ml-2">→</span>
                 </button>
             </div>
         </section>
         
         <section class="flex justify-center">
-            <img src="/views/static/images/logo_sisdegua.png" alt="SISDEGUA Logo" class="max-w-xs md:max-w-md">
+            <img src="../static/images/logo_sisdegua.png" alt="SISDEGUA Logo" class="max-w-xs md:max-w-md">
         </section>
     </main>
 </body>
