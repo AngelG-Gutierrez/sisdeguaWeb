@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas - SISDEGUA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles/estadisticas.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/icono.png" alt="SISDEGUA Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estadisticas">Estadísticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-link nav-link dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="stats-wrapper">
+        <div class="stats-container">
+            <h1 class="stats-title">Estadísticas del Sistema</h1>
+
+            <div class="stats-grid">
+                <!-- Tarjeta de Posibilidades de Desbordamiento -->
+                <div class="stats-card">
+                    <div class="stats-card-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="stats-card-content">
+                        <h3>Posibilidades de Desbordamiento</h3>
+                        <p class="stats-number">75%</p>
+                        <p class="stats-text">Alto riesgo</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Intensidad de Lluvia -->
+                <div class="stats-card">
+                    <div class="stats-card-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <div class="stats-card-content">
+                        <h3>Intensidad de Lluvia</h3>
+                        <p class="stats-number">45%</p>
+                        <p class="stats-text">Moderada</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Estado del Equipo -->
+                <div class="stats-card">
+                    <div class="stats-card-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="stats-card-content">
+                        <h3>Estado del Equipo</h3>
+                        <p class="stats-number">Activo</p>
+                        <p class="stats-text">Última conexión: 5 min</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Alertas Registradas -->
+                <div class="stats-card">
+                    <div class="stats-card-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stats-card-content">
+                        <h3>Alertas Registradas</h3>
+                        <p class="stats-number">12</p>
+                        <p class="stats-text">Últimas 24 horas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Gráficas -->
+            <div class="charts-section">
+                <!-- Tabla de Registros Actuales -->
+                <div class="chart-container full-width">
+                    <h3 class="chart-title">Registros Actuales</h3>
+                    <div class="table-placeholder">
+                        <i class="fas fa-table"></i>
+                        <p>Tabla de Registros Actuales</p>
+                    </div>
+                </div>
+
+                <!-- Gráfica de Niveles de Agua -->
+                <div class="chart-container">
+                    <h3 class="chart-title">Niveles de Agua en Tiempo Real</h3>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Gráfica de Niveles de Agua</p>
+                    </div>
+                </div>
+
+                <!-- Gráfica de Intensidad de Lluvia -->
+                <div class="chart-container">
+                    <h3 class="chart-title">Intensidad de Lluvia</h3>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Gráfica de Intensidad de Lluvia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-section">
+                <!-- Gráfica Circular de Meses -->
+                <div class="chart-container circular">
+                    <h3 class="chart-title">Meses de Mayor Posibilidad de Desbordamiento</h3>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-pie"></i>
+                        <p>Gráfica Circular de Meses</p>
+                    </div>
+                </div>
+
+                <!-- Directorio de Emergencias -->
+                <div class="emergency-directory">
+                    <h3>Directorio de Emergencias</h3>
+                    <ul class="emergency-list">
+                        <li class="emergency-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Protección Civil: 123-456-7890</span>
+                        </li>
+                        <li class="emergency-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Bomberos: 123-456-7891</span>
+                        </li>
+                        <li class="emergency-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Policía: 123-456-7892</span>
+                        </li>
+                        <li class="emergency-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Emergencias: 911</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
