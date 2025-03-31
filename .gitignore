@@ -1,4 +1,3 @@
 database/astraDB.py
-requirements.txt
-/database
 database/queries.py
+requirements.txt
