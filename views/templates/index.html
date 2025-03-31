@@ -1,64 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SISDEGUA</title>
+    <link rel="icon" type="image/png" href="/static/images/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-white">
-    <header class="border-b border-black p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-xl font-bold flex items-center">
-                <img src="../static/images/logo_sisdegua.png" alt="Logo" class="h-10 w-10 mr-2">
-                SISDEGUA
-            </a>
-            <ul class="flex space-x-6 text-black font-medium">
-                <li><a href="#" class="hover:underline">Inicio</a></li>
-                <li><a href="#" class="hover:underline">Nosotros</a></li>
-                <li><a href="#" class="hover:underline">Estadísticas</a></li>
-                <li>
-                    <button onclick="window.location.href='/login'" class="px-4 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300">
-                        Iniciar Sesión
-                    </button>
-                </li>
-            </ul>
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center">
+                    <img src="/static/images/icono.png" alt="SISDEGUA Logo" class="h-13 w-12">
+                </a>
+                <div class="flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="#aboutSection" class="text-gray-700 hover:text-blue-600 transition-colors scroll-smooth">Nosotros</a>
+                    <a href="/estadisticas" class="text-gray-700 hover:text-blue-600 transition-colors">Estadísticas</a>
+                    <a href="/login" class="nav-button">Iniciar Sesión</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section  class="container mx-auto mt-12 p-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div></div>
-            <h1 class="text-4xl font-bold text-blue-600 leading-tight">Sistema de Detección de Desbordamientos de Agua</h1>
-            <p class="mt-4 text-lg text-gray-700">
-                Conoce a detalle las lecturas de tu equipo SISDEGUA, ve sus historiales, gráficas y probabilidades de eventos naturales.
-            </p>
-            <div class="mt-6 flex space-x-4">
-                <button class="px-6 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300 font-medium">Conoce más</button>
-                <button onclick="window.location.href='/login'"
-                class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
-                    Iniciar Sesión <span class="ml-2">→</span>
-                </button>
+    <main class="pt-20">
+        <div class="hero-wrapper">
+            <div class="container mx-auto px-4">
+                <div class="hero-section grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h1 class="main-title">
+                            Sistema de<br>
+                            Detección de<br>
+                            Desbordamientos<br>
+                            de Agua
+                        </h1>
+                        <p class="description">
+                            Conoce a detalle las lecturas de tu equipo SISDEGUA, ve sus historiales, gráficas y 
+                            probabilidades de eventos naturales
+                        </p>
+                        <div class="action-buttons flex space-x-4">
+                            <button class="nav-button" id="conoceMasBtn">
+                                Conoce más
+                            </button>
+                            <a href="/login" class="login-button flex items-center">
+                                Iniciar Sesión
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="logo-container fade-in">
+                        <img src="/static/images/logo_sisdegua.png" alt="SISDEGUA Logo Grande" class="w-full h-auto">
+                    </div>
+                </div>
             </div>
-        </section>
-        <section>
-            <h1 class="text-4xl font-bold text-blue-600 leading-tight">Sistema de Detección de Desbordamientos de Agua</h1>
-            <p class="mt-4 text-lg text-gray-700">
-                Conoce a detalle las lecturas de tu equipo SISDEGUA, ve sus historiales, gráficas y probabilidades de eventos naturales.
-            </p>
-            <div class="mt-6 flex space-x-4">
-                <button class="px-6 py-2 bg-blue-200 border border-black rounded-md hover:bg-blue-300 font-medium">Conoce más</button>
-                <button onclick="window.location.href='/login'"
-                class="px-6 py-2 border border-black rounded-md hover:bg-gray-200 font-medium flex items-center">
-                    Iniciar Sesión <span class="ml-2">→</span>
-                </button>
+        </div>
+
+        <div class="container mx-auto px-4">
+            <!-- Info Section -->
+            <div class="info-section" id="infoSection">
+                <h2 class="info-section-title">SISDEGUA Web</h2>
+                <p class="info-section-description">
+                    El objetivo de SISDEGUA es monitorear los niveles de agua en canales, ríos y acequias para detectar riesgos de desbordamiento. Con esta información, el sistema envía alertas en tiempo real a los dispositivos móviles con la aplicación SISDEGUA Mobile y muestra los resultados en los LEDs del medidor, que forma parte del equipo SISDEGUA. De esta manera, contribuye a la prevención de incidentes y a la protección de comunidades vulnerables.
+                </p>
+
+                <!-- Carrusel de imágenes -->
+                <div class="carousel-container">
+                    <button class="carousel-button prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-button next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/static/images/imagenes_desbordamientos/imagen1.png" class="d-block" alt="Imagen del sistema 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/static/images/imagenes_desbordamientos/imagen2.png" class="d-block" alt="Imagen del sistema 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/static/images/imagenes_desbordamientos/imagen3.png" class="d-block" alt="Imagen del sistema 3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/static/images/imagenes_desbordamientos/imagen4.png" class="d-block" alt="Imagen del sistema 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="info-section-title2">¿Qué es lo que hace este sistema?</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-water feature-icon"></i>
+                        <h3 class="feature-title">Monitoreo de niveles de agua</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cloud-rain feature-icon"></i>
+                        <h3 class="feature-title">Monitoreo de intensidad de lluvia</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bell feature-icon"></i>
+                        <h3 class="feature-title">Aplicación móvil para notificación de posibles desbordamientos de agua</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-bar feature-icon"></i>
+                        <h3 class="feature-title">Página web para mostrar estadísticamente los datos recopilados</h3>
+                    </div>
+                </div>
             </div>
-        </section>
-        
-        <section class="flex justify-center">
-            <img src="../static/images/logo_sisdegua.png" alt="SISDEGUA Logo" class="max-w-xs md:max-w-md">
-        </section>
+        </div>
+
+        <!-- Sección Nosotros -->
+        <div class="about-section-wrapper">
+            <div class="about-section" id="aboutSection">
+                <div class="container mx-auto px-4">
+                    <h2 class="about-title">Nosotros</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <div class="about-card">
+                                <h3 class="about-subtitle">
+                                    <i class="fas fa-users"></i>
+                                    ¿Quiénes Somos?
+                                </h3>
+                                <p class="about-description">
+                                    Somos un equipo comprometido con la seguridad y el bienestar de las comunidades. 
+                                    SISDEGUA nació de la necesidad de prevenir y mitigar los riesgos asociados con 
+                                    los desbordamientos de agua en diferentes regiones.
+                                </p>
+                            </div>
+                            
+                            <div class="about-card">
+                                <h3 class="about-subtitle">
+                                    <i class="fas fa-bullseye"></i>
+                                    Nuestra Misión
+                                </h3>
+                                <p class="about-description">
+                                    Proporcionar un sistema de alerta temprana confiable y eficiente que ayude a 
+                                    proteger vidas y propiedades mediante la detección oportuna de posibles 
+                                    desbordamientos de agua.
+                                </p>
+                            </div>
+
+                            <div class="about-card">
+                                <h3 class="about-subtitle">
+                                    <i class="fas fa-eye"></i>
+                                    Nuestra Visión
+                                </h3>
+                                <p class="about-description">
+                                    Ser el sistema líder en prevención de desbordamientos, expandiendo nuestra 
+                                    cobertura a nivel nacional y mejorando constantemente nuestra tecnología para 
+                                    ofrecer un servicio cada vez más preciso y confiable.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <i class="fas fa-shield-alt value-icon"></i>
+                                <h4 class="value-title">Seguridad</h4>
+                                <p class="value-description">Priorizamos la protección y el bienestar de las comunidades mediante sistemas confiables</p>
+                            </div>
+                            <div class="value-card">
+                                <i class="fas fa-bolt value-icon"></i>
+                                <h4 class="value-title">Rapidez</h4>
+                                <p class="value-description">Respuesta inmediata con alertas en tiempo real para acción preventiva</p>
+                            </div>
+                            <div class="value-card">
+                                <i class="fas fa-chart-line value-icon"></i>
+                                <h4 class="value-title">Precisión</h4>
+                                <p class="value-description">Mediciones exactas y análisis detallado para resultados confiables</p>
+                            </div>
+                            <div class="value-card">
+                                <i class="fas fa-handshake value-icon"></i>
+                                <h4 class="value-title">Compromiso</h4>
+                                <p class="value-description">Dedicación total al servicio y mejora continua de nuestros sistemas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-4 py-6">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/static/images/icono.png" alt="SISDEGUA Logo" class="h-11 w-10">
+                    <span class="footer-brand">SISDEGUA</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/" class="footer-link">Inicio</a>
+                    <a href="#aboutSection" class="footer-link">Nosotros</a>
+                    <a href="/estadisticas" class="footer-link">Estadísticas</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 SISDEGUA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoSection = document.getElementById('infoSection');
+            const aboutSection = document.getElementById('aboutSection');
+            const conoceMasBtn = document.getElementById('conoceMasBtn');
+
+            // Función para mostrar la sección de infornación
+            function showInfoSection() {
+                infoSection.classList.add('visible');
+                infoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Función para mostrar la sección Nosotros
+            function showAboutSection() {
+                aboutSection.classList.add('visible');
+            }
+
+            // Event listeners
+            conoceMasBtn.addEventListener('click', showInfoSection);
+
+            // Observer para las seccione
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'infoSection' && !entry.target.classList.contains('visible')) {
+                            entry.target.classList.add('visible');
+                        }
+                        if (entry.target.id === 'aboutSection' && !entry.target.classList.contains('visible')) {
+                            entry.target.classList.add('visible');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            // Observar ambas secciones
+            observer.observe(infoSection);
+            observer.observe(aboutSection);
+
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Agregar la clase visible después de un pequeño delay
+                        setTimeout(() => {
+                            targetElement.classList.add('visible');
+                        }, 300);
+                    }
+                });
+            });
+
+            // Para carrusel
+            const carousel = document.getElementById('imageCarousel');
+            const prevBtn = document.querySelector('.carousel-button.prev');
+            const nextBtn = document.querySelector('.carousel-button.next');
+
+            prevBtn.addEventListener('click', () => {
+                bootstrap.Carousel.getInstance(carousel).prev();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                bootstrap.Carousel.getInstance(carousel).next();
+            });
+        });
+    </script>
 </body>
 </html>
