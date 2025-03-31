@@ -12,7 +12,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="/statistics">
                 <img src="/static/images/icono.png" alt="SISDEGUA Logo" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -59,8 +59,13 @@
                     </div>
                     <div class="stats-card-content">
                         <h3>Posibilidades de Desbordamiento</h3>
-                        <p class="stats-number">75%</p>
-                        <p class="stats-text">Alto riesgo</p>
+                        {% if datos_actuales %}
+                        <p class="stats-number">{{ datos_actuales.get('waterlevel', 'N/A') }}%</p>
+                        <p class="stats-text">{{ datos_actuales.get('waterprobability', 'N/A') }}</p>
+                        {% else %}
+                        <p class="stats-number">N/A</p>
+                        <p class="stats-text">Sin datos</p>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -71,8 +76,13 @@
                     </div>
                     <div class="stats-card-content">
                         <h3>Intensidad de Lluvia</h3>
-                        <p class="stats-number">45%</p>
-                        <p class="stats-text">Moderada</p>
+                        {% if datos_actuales %}
+                        <p class="stats-number">{{ datos_actuales.get('rainlevel', 'N/A') }}%</p>
+                        <p class="stats-text">{{ datos_actuales.get('rainintensity', 'N/A') }}</p>
+                        {% else %}
+                        <p class="stats-number">N/A</p>
+                        <p class="stats-text">Sin datos</p>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -106,9 +116,25 @@
                 <!-- Tabla de Registros Actuales -->
                 <div class="chart-container full-width">
                     <h3 class="chart-title">Registros Actuales</h3>
-                    <div class="table-placeholder">
-                        <i class="fas fa-table"></i>
-                        <p>Tabla de Registros Actuales</p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Nivel de Agua</th>
+                                    <th>Intensidad de Lluvia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for registro in datos_historicos[:10] %}
+                                <tr>
+                                    <td class="fecha-registro">{{ registro.get('date')}}</td>
+                                    <td>{{ registro.get('waterlevel') }}%</td>
+                                    <td>{{ registro.get('rainlevel') }}%</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -116,8 +142,9 @@
                 <div class="chart-container">
                     <h3 class="chart-title">Niveles de Agua en Tiempo Real</h3>
                     <div class="chart-placeholder">
-                        <i class="fas fa-chart-line"></i>
+                        <!--<i class="fas fa-chart-line"></i>-->
                         <p>Gráfica de Niveles de Agua</p>
+                        <canvas id="miGrafica"></canvas>
                     </div>
                 </div>
 
@@ -125,8 +152,8 @@
                 <div class="chart-container">
                     <h3 class="chart-title">Intensidad de Lluvia</h3>
                     <div class="chart-placeholder">
-                        <i class="fas fa-chart-bar"></i>
                         <p>Gráfica de Intensidad de Lluvia</p>
+                        <canvas id="miGrafica2"></canvas>
                     </div>
                 </div>
             </div>
@@ -167,5 +194,172 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".fecha-registro").forEach(function (element) {
+                let fechaOriginal = element.textContent.trim();
+                if (fechaOriginal) {
+                    let fecha = new Date(fechaOriginal);
+                    let fechaFormateada = fecha.toLocaleString("es-MX", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    });
+                    element.textContent = fechaFormateada;
+                }
+            });
+        });
+    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let ctx = document.getElementById("miGrafica").getContext("2d");
+    
+        let datos = {
+            labels: [],
+            datasets: [{
+                label: "Nivel de Agua (%)",
+                backgroundColor: "rgba(54, 162, 235, 0.5)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 2,
+                data: []
+            }]
+        };
+    
+        let config = {
+            type: "line",
+            data: datos,
+            options: {
+                responsive: true,
+                scales: {
+                    x: { title: { display: true, text: "Hora" } },
+                    y: { title: { display: true, text: "Nivel de Agua (%)" }, min: 0, max: 100 }
+                }
+            }
+        };
+    
+        let miGrafica = new Chart(ctx, config);
+    
+        function cargarDatosHistoricos() {
+            fetch("/api/historicos")
+                .then(response => response.json())
+                .then(data => {
+                    datos.labels = data.map(d => {
+                        const fecha = new Date(d.fecha);
+                        return fecha.toLocaleString("es-MX", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit"
+                        });
+                    });
+                    datos.datasets[0].data = data.map(d => d.nivel_agua);
+                    miGrafica.update();
+                })
+                .catch(error => console.error("Error obteniendo datos históricos:", error));
+        }
+    
+        function actualizarGrafica() {
+            fetch("/api/historicos")
+                .then(response => response.json())
+                .then(data => {
+                    let nuevoDato = data[data.length - 1];
+    
+                    if (datos.labels.length >= 6) {
+                        datos.labels.shift();
+                        datos.datasets[0].data.shift();
+                    }
+    
+                    datos.labels.push(new Date(nuevoDato.fecha).toLocaleTimeString());
+                    datos.datasets[0].data.push(nuevoDato.nivel_agua);
+    
+                    miGrafica.update();
+                })
+                .catch(error => console.error("Error obteniendo datos:", error));
+        }
+    
+        cargarDatosHistoricos();
+        setInterval(actualizarGrafica, 5000);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let ctx = document.getElementById("miGrafica2").getContext("2d");
+    
+        let datos = {
+            labels: [],
+            datasets: [{
+                label: "Nivel de Lluvia (%)",
+                backgroundColor: "rgba(255, 99, 132, 0.5)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+                data: []
+            }]
+        };
+    
+        let config = {
+            type: "line",
+            data: datos,
+            options: {
+                responsive: true,
+                scales: {
+                    x: { title: { display: true, text: "Hora" } },
+                    y: { title: { display: true, text: "Nivel de Lluvia (%)" }, min: 0, max: 100 }
+                }
+            }
+        };
+    
+        let miGrafica2 = new Chart(ctx, config);
+    
+        function cargarDatosHistoricos() {
+            fetch("/api/historicos")
+                .then(response => response.json())
+                .then(data => {
+                    datos.labels = data.map(d => {
+                        const fecha = new Date(d.fecha);
+                        return fecha.toLocaleString("es-MX", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit"
+                        });
+                    });
+                    datos.datasets[0].data = data.map(d => d.nivel_lluvia);
+                    miGrafica2.update();
+                })
+                .catch(error => console.error("Error obteniendo datos históricos:", error));
+        }
+    
+        function actualizarGrafica() {
+            fetch("/api/historicos")
+                .then(response => response.json())
+                .then(data => {
+                    let nuevoDato = data[data.length - 1];
+    
+                    if (datos.labels.length >= 6) {
+                        datos.labels.shift();
+                        datos.datasets[0].data.shift();
+                    }
+    
+                    datos.labels.push(new Date(nuevoDato.fecha).toLocaleTimeString());
+                    datos.datasets[0].data.push(nuevoDato.nivel_lluvia);
+    
+                    miGrafica2.update();
+                })
+                .catch(error => console.error("Error obteniendo datos:", error));
+        }
+    
+        cargarDatosHistoricos();
+        setInterval(actualizarGrafica, 5000);
+    });
+</script>
 </body>
 </html> 

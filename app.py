@@ -14,4 +14,4 @@ app.register_blueprint(auth_db)
 app.register_blueprint(statistics_db)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
