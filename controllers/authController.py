@@ -1,9 +1,9 @@
 from flask import Blueprint, Flask, render_template, request, redirect, url_for
 import os
-from database.queries import login_user, register_user, logout_user
+from database.queries import login_user, register_user
 
 auth_db = Blueprint('auth', __name__)
-app = Flask(__name__, template_folder=os.path.join('views', 'templates')) 
+app = Flask(__name__, template_folder=os.path.join('templates'))
 
 @auth_db.route('/login', methods=['GET', 'POST'])
 def login():
@@ -16,7 +16,7 @@ def login():
         if error:
             return render_template('./auth/login.html', error=error)
         
-        return redirect(url_for('index'))
+        return redirect(url_for('statistics.statistics'))
         
     return render_template('./auth/login.html')
 
@@ -31,6 +31,6 @@ def register():
         if error:
             return render_template('./auth/register.html', error=error)
             
-        return redirect(url_for('index'))
+        return redirect(url_for('./auth/login.html'))
         
     return render_template('./auth/register.html')
