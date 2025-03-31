@@ -9,7 +9,7 @@ SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 # Crear el cliente de Supabase
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY) 
 
-# Funciones para autenticación
+# Funciones para autenticación 
 def login_user(email, password):
     try:
         response = supabase.auth.sign_in_with_password({
