@@ -22,7 +22,7 @@ def statistics():
 @login_required
 def obtener_datos_historicos():
     astra = AstraDB()
-    datos_historicos = astra.get_sensor_data()
+    datos_historicos = astra.get_sensor_data_limit()
 
     datos_filtrados = [
         {
