@@ -40,6 +40,6 @@ def register():
         if error:
             return render_template('./auth/register.html', error=error)
             
-        return redirect(url_for('./auth/login.html'))
+        return redirect(url_for('auth.login'))
         
     return render_template('./auth/register.html')
