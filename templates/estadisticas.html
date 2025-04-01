@@ -29,7 +29,7 @@
                         <a class="nav-link" href="/nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/estadisticas">Estadísticas</a>
+                        <a class="nav-link" href="/estadisticas">Reportes</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
@@ -37,9 +37,6 @@
                                 <i class="fas fa-user-circle"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
-                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
                             </ul>
                         </div>
@@ -60,9 +57,9 @@
                         <i class="fas fa-water"></i>
                     </div>
                     <div class="stats-card-content">
-                        <h3>Posibilidades de Desbordamiento</h3>
-                        <p id="water-level" class="stats-number">N/A</p>
-                        <p id="water-probability" class="stats-text">Sin datos</p>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Posibilidades de Desbordamiento</h3>
+                        <p id="water-level" class="stats-number" style="font-size: 2rem; font-weight: bold; margin: 0;">40%</p>
+                        <p id="water-probability" class="stats-text" style="margin-top: 5px;">Media</p>
                     </div>
                 </div>
 
@@ -72,15 +69,15 @@
                         <i class="fas fa-cloud-rain"></i>
                     </div>
                     <div class="stats-card-content">
-                        <h3>Intensidad de Lluvia</h3>
-                        <p id="rain-level" class="stats-number">N/A</p>
-                        <p id="rain-intensity" class="stats-text">Sin datos</p>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Intensidad de Lluvia</h3>
+                        <p id="rain-level" class="stats-number" style="font-size: 2rem; font-weight: bold; margin: 0;">10%</p>
+                        <p id="rain-intensity" class="stats-text" style="margin-top: 5px;">Baja</p>
                     </div>
                 </div>
             </div>
 
             <!-- Sección de Gráficas -->
-            <div class="charts-section">
+            <div class="charts-section" style="margin-top: 20px;">
                 <!-- Tabla de Registros Actuales -->
                 <div class="chart-container full-width">
                     <h3 class="chart-title">Registros Actuales</h3>
@@ -88,9 +85,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Fecha</th>
-                                    <th>Nivel de Agua</th>
-                                    <th>Intensidad de Lluvia</th>
+                                    <th style="text-align: left;">Fecha</th>
+                                    <th class="text-center">Nivel de Agua</th>
+                                    <th class="text-center">Intensidad de Lluvia</th>
                                 </tr>
                             </thead>
                             <tbody id="tabla-registros">
@@ -154,6 +151,31 @@
             </div>
         </div>
     </div>
+    <div style="margin-bottom: 50px; background: linear-gradient(to bottom, #87CEEB, #f0f8ff);"></div>
+    <style>
+        #tabla-registros td:nth-child(1) { text-align: left; }
+        #tabla-registros td:nth-child(2), #tabla-registros td:nth-child(3) { text-align: center; }
+        body { background: linear-gradient(to bottom, #f0f8ff, #87CEEB); }
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stats-card-icon {
+            font-size: 2rem;
+            color: #4287f5;
+            margin-right: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 0 15px;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
