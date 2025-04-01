@@ -7,7 +7,7 @@
 
 .hero-wrapper {
   width: 100vw;
-  height: 90vh;
+  height: 95vh;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   position: relative;
@@ -52,7 +52,7 @@
 }
 
 .hero-section {
-  min-height: calc(100vh - 76px); /* Altura total menos el header */
+  min-height: calc(90vh - 76px);
   display: flex;
   align-items: center;
   position: relative;
@@ -174,7 +174,7 @@
 }
 
 .feature-card {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
@@ -190,13 +190,13 @@
 
 .feature-icon {
   font-size: 2rem;
-  color: #FFFFFF;
+  color: white;
   margin-bottom: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .feature-title {
-  color: #FFFFFF;
+  color: white;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-weight: 400;
@@ -536,4 +536,35 @@
   .values-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
+}
+
+.info-section-wrapper {
+    padding: 2rem 0;
+    margin-top: -2rem;
+    margin-bottom: -2rem;
+}
+
+.info-section-title {
+    color: white;
+}
+
+.info-section-description {
+    color: white;
+}
+
+.info-section-title2 {
+    color: white;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature-title {
+    color: white;
+}
+
+.feature-icon {
+    color: white;
 } 
