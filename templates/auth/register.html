@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/styles/auth.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <a href="/" class="back-button">
@@ -107,5 +109,72 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Register Script cargado');
+    
+            const form = document.querySelector('.auth-form');
+    
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+    
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const apellidos = document.getElementById('apellidos').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value.trim();
+    
+                    if (nombre.length < 2) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Nombre inválido',
+                            text: 'Por favor, ingresa un nombre válido.',
+                        });
+                        return;
+                    }
+    
+                    if (apellidos.length < 2) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Apellidos inválidos',
+                            text: 'Por favor, ingresa tus apellidos.',
+                        });
+                        return;
+                    }
+    
+                    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Correo inválido',
+                            text: 'Por favor, ingresa un correo electrónico válido.',
+                        });
+                        return;
+                    }
+    
+                    if (password.length < 6) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Contraseña demasiado corta',
+                            text: 'Debe tener al menos 6 caracteres.',
+                        });
+                        return;
+                    }
+    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registro exitoso',
+                        text: 'Redirigiendo...',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        form.submit();
+                    });
+                });
+            } else {
+                console.error('No se encontró el formulario de registro.');
+            }
+        });
+    </script>
+    
 </body>
 </html>
