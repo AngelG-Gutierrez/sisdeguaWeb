@@ -118,11 +118,25 @@
             </div>
             <div class="bottom-section">
                 <!-- Gráfica Circular de Meses -->
-                <div class="chart-container circular">
-                    <h3 class="chart-title">Meses de Mayor Posibilidad de Desbordamiento</h3>
+                <div class="chart-container circular p-4">
+                    <h3 class="chart-title mb-4">Filtro por Fecha</h3>
+                    
+                    <div class="row g-3 align-items-end mb-4">
+                        <div class="col-md-4">
+                            <label for="fecha-inicio" class="form-label">Fecha de inicio</label>
+                            <input type="date" class="form-control" id="fecha-inicio">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fecha-fin" class="form-label">Fecha de fin</label>
+                            <input type="date" class="form-control" id="fecha-fin">
+                        </div>
+                        <div class="col-md-4">
+                            <button id="boton-filtrar" class="btn btn-primary w-100">Filtrar</button>
+                        </div>
+                    </div>
+                
                     <div class="chart-placeholder">
-                        <i class="fas fa-chart-pie"></i>
-                        <p>Gráfica Circular de Meses</p>
+                        <canvas id="miGrafica3"></canvas>
                     </div>
                 </div>
 

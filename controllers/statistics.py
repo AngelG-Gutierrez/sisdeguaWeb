@@ -18,7 +18,7 @@ def statistics():
     datos_actuales=datos_actuales,
     datos_historicos=datos_historicos)
 
-@statistics_db.route('/api/historicos', methods=['GET'])
+@statistics_db.route('/api/table', methods=['GET'])
 @login_required
 def obtener_datos_historicos():
     astra = AstraDB()

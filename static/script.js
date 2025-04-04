@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let grafica = new Chart(ctx, config);
     
         function cargarDatosHistoricos() {
-            fetch("/api/historicos")
+            fetch("/api/table")
                 .then(response => response.json())
                 .then(data => {
                     data.reverse();
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         function actualizarGrafica() {
-            fetch("/api/historicos")
+            fetch("/api/table")
                 .then(response => response.json())
                 .then(data => {
                     data.reverse();
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         cargarDatosHistoricos();
-        setInterval(actualizarGrafica, 5000);
+        setInterval(actualizarGrafica, 3000);
     }
     
     crearGrafica("miGrafica", "Nivel de Agua (%)", "54, 162, 235", "nivel_agua");
@@ -107,11 +107,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     actualizarDatos();
-    setInterval(actualizarDatos, 5000);
+    setInterval(actualizarDatos, 3000);
 
     // Actualizar tabla de registros históricos
     function actualizarTabla() {
-        fetch('/api/historicos')
+        fetch('/api/table')
             .then(response => response.json())
             .then(data => {
                 let tbody = document.getElementById("tabla-registros");
@@ -141,5 +141,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     actualizarTabla();
-    setInterval(actualizarTabla, 5000);
+    setInterval(actualizarTabla, 3000);
 });
