@@ -128,7 +128,6 @@ button, a, .btn, .dropdown-menu, .nav-link {
 
 .stats-wrapper::before {
     content: '';
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -142,7 +141,6 @@ button, a, .btn, .dropdown-menu, .nav-link {
 
 .stats-wrapper::after {
     content: '';
-    position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
@@ -170,7 +168,6 @@ button, a, .btn, .dropdown-menu, .nav-link {
 
 .stats-title::after {
     content: '';
-    position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);

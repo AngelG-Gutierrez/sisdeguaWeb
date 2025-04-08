@@ -22,7 +22,6 @@
 
 .hero-wrapper::before {
   content: '';
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -37,7 +36,6 @@
 
 .hero-wrapper::after {
   content: '';
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -227,7 +225,6 @@
 }
 
 .carousel-button {
-  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.8);
@@ -279,7 +276,6 @@
 
 .about-section-wrapper::before {
   content: '';
-  position: absolute;
   top: 0;
   right: 0;
   width: 300px;
@@ -292,7 +288,6 @@
 
 .about-section-wrapper::after {
   content: '';
-  position: absolute;
   bottom: 0;
   left: 0;
   width: 200px;
@@ -329,7 +324,6 @@
 
 .about-title::after {
   content: '';
-  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

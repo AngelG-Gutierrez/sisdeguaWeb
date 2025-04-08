@@ -132,7 +132,6 @@ body {
 
 .stats-wrapper::before {
     content: '';
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -146,7 +145,6 @@ body {
 
 .stats-wrapper::after {
     content: '';
-    position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
@@ -175,7 +173,6 @@ body {
 
 .stats-title::after {
     content: '';
-    position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -436,7 +433,6 @@ body {
 
 .loading::after {
     content: '';
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;

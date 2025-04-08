@@ -23,7 +23,6 @@
 
 .auth-wrapper::before {
   content: '';
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -38,7 +37,6 @@
 
 .auth-wrapper::after {
   content: '';
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -82,7 +80,6 @@
 
 .auth-title::after {
   content: '';
-  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -224,7 +221,6 @@
 
 .auth-button.loading::after {
   content: '';
-  position: absolute;
   width: 20px;
   height: 20px;
   top: 50%;
