@@ -3,15 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes</title>
+    <title>Reportes Mensuales</title>
     <link rel="icon" type="image/png" href="/static/images/icono.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/styles/reportes.css">
+    <script src="/static/candado.js"></script>
+    <style>
+        /* Forzar interacción y selección de texto */
+        html, body, * {
+            user-select: text !important;
+            pointer-events: auto !important;
+            cursor: auto !important;
+            z-index: auto !important;
+        }
+
+        /* Eliminar overlays o capas invisibles */
+        .overlay, .backdrop, .blocker, .invisible-layer, .filtro, .interceptor {
+            display: none !important;
+        }
+
+        /* Asegurar que los elementos sean interactuables */
+        button, a, .btn, .dropdown-menu, .nav-link {
+            pointer-events: auto !important;
+            z-index: 999 !important;
+            position: relative !important;
+        }
+
+        /* Eliminar estilos de bloqueo comunes */
+        body::before, body::after, html::before, html::after {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/statistics">
                 <img src="/static/images/icono.png" alt="SISDEGUA Logo" height="50">
@@ -30,38 +57,66 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/nosotros">Nosotros</a>
                     </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="btn btn-link nav-link dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
-                            </ul>
-                        </div>
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-link nav-link dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Contenido principal -->
     <div class="stats-wrapper" style="padding-top: 140px;">
         <div class="stats-container">
-            <h1 class="stats-title">Reportes mensuales</h1>
+            <h1 class="stats-title text-center">Reportes Mensuales</h1>
+
+            <!-- Botón para descargar el PDF -->
+            <div class="text-center mb-4">
+                <a href="/descargar-pdf" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF
+                </a>
+            </div>
+
             <!-- Tabla de reportes -->
             <div class="charts-section" style="margin-top: 20px;">
                 <div class="chart-container full-width">
-                    <h3 class="chart-title">Reportes de lecturas SISDEGUA</h3>
+                    <h3 class="chart-title text-center">Lecturas SISDEGUA</h3>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="text-align: left;">Fecha</th>
-                                    <th class="text-center">Descarga de reporte</th>
+                                    <th>Mes</th>
+                                    <th>Máximo Nivel de Agua</th>
+                                    <th>Mínimo Nivel de Agua</th>
+                                    <th>Promedio Nivel de Agua</th>
+                                    <th>Máximo de Lluvia</th>
+                                    <th>Mínimo de Lluvia</th>
+                                    <th>Promedio de Lluvia</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabla-reportes">
-                                <!-- Aquí para poner los reportes en tabla -->
+                            <tbody>
+                                {% if reportes %}
+                                    {% for mes, valores in reportes.items() %}
+                                        <tr>
+                                            <td>{{ mes }}</td>
+                                            <td>{{ valores.max }}</td>
+                                            <td>{{ valores.min }}</td>
+                                            <td>{{ valores.promedio }}</td>
+                                            <td>{{ valores.max_rain }}</td>
+                                            <td>{{ valores.min_rain }}</td>
+                                            <td>{{ valores.promedio_rain }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No hay datos disponibles para mostrar.</td>
+                                    </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -69,9 +124,9 @@
             </div>
         </div>
     </div>
-
+      
+</body>
     <div style="background: linear-gradient(to bottom, #87CEEB, #f0f8ff);"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
 </html>

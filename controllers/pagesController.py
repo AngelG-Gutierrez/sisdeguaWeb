@@ -7,8 +7,3 @@ pages_db = Blueprint('pages', __name__)
 @login_required
 def nosotros():
     return render_template('nosotros.html')
-
-@pages_db.route('/reportes')
-@login_required
-def reportes():
-    return render_template('reportes.html') 
