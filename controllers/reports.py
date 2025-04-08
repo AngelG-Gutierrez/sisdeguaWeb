@@ -130,10 +130,10 @@ def descargar_pdf():
                 pdf.cell(0, 8, str(val), ln=True)
             pdf.ln(3)
 
-        top_list("Los 5 mayores únicos - Agua", datos.get('top5_max', []))
-        top_list("Los 5 menores únicos - Agua", datos.get('top5_min', []))
-        top_list("Los 5 mayores únicos - Lluvia", datos.get('top5_max_rain', []))
-        top_list("Los 5 menores únicos - Lluvia", datos.get('top5_min_rain', []))
+        top_list("Los 5 Niveles Más Altos de Agua", datos.get('top5_max', []))
+        top_list("Los 5 Niveles Más Bajos de Agua", datos.get('top5_min', []))
+        top_list("Los 5 Niveles Más Altos de Lluvia", datos.get('top5_max_rain', []))
+        top_list("Los 5 Niveles Más Bajos de Lluvia", datos.get('top5_min_rain', []))
         pdf.ln(5)
 
     # Pie de página
