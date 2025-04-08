@@ -130,10 +130,10 @@ def descargar_pdf():
                 pdf.cell(0, 8, str(val), ln=True)
             pdf.ln(3)
 
-        top_list("Top 5 mayores únicos - Agua", datos.get('top5_max', []))
-        top_list("Top 5 menores únicos - Agua", datos.get('top5_min', []))
-        top_list("Top 5 mayores únicos - Lluvia", datos.get('top5_max_rain', []))
-        top_list("Top 5 menores únicos - Lluvia", datos.get('top5_min_rain', []))
+        top_list("Los 5 mayores únicos - Agua", datos.get('top5_max', []))
+        top_list("Los 5 menores únicos - Agua", datos.get('top5_min', []))
+        top_list("Los 5 mayores únicos - Lluvia", datos.get('top5_max_rain', []))
+        top_list("Los 5 menores únicos - Lluvia", datos.get('top5_min_rain', []))
         pdf.ln(5)
 
     # Pie de página
@@ -144,5 +144,5 @@ def descargar_pdf():
 
     # Generación del PDF
     response = Response(pdf.output(dest='S').encode('latin1'), content_type='application/pdf')
-    response.headers['Content-Disposition'] = 'attachment; filename=reportes_modernizados.pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=reportes_mensuales.pdf'
     return response

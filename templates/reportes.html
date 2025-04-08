@@ -9,32 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/styles/reportes.css">
     <script src="/static/candado.js"></script>
-    <style>
-        /* Forzar interacción y selección de texto */
-        html, body, * {
-            user-select: text !important;
-            pointer-events: auto !important;
-            cursor: auto !important;
-            z-index: auto !important;
-        }
-
-        /* Eliminar overlays o capas invisibles */
-        .overlay, .backdrop, .blocker, .invisible-layer, .filtro, .interceptor {
-            display: none !important;
-        }
-
-        /* Asegurar que los elementos sean interactuables */
-        button, a, .btn, .dropdown-menu, .nav-link {
-            pointer-events: auto !important;
-            z-index: 999 !important;
-            position: relative !important;
-        }
-
-        /* Eliminar estilos de bloqueo comunes */
-        body::before, body::after, html::before, html::after {
-            display: none !important;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->

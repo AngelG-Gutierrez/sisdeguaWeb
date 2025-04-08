@@ -17,6 +17,13 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--gray-100);
     color: var(--gray-900);
+    user-select: text;
+}
+
+button, a, .btn, .dropdown-menu, .nav-link {
+    pointer-events: auto !important;
+    z-index: 999 !important;
+    position: relative !important;
 }
 
 /* Navbar Styles */
