@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         cargarDatosHistoricos();
-        setInterval(actualizarGrafica, 3000);
+        setInterval(actualizarGrafica, 4000);
     }
     
     crearGrafica("miGrafica", "Nivel de Agua (%)", "54, 162, 235", "nivel_agua");
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     actualizarDatos();
-    setInterval(actualizarDatos, 3000);
+    setInterval(actualizarDatos, 4000);
 
     // Actualizar tabla de registros históricos
     function actualizarTabla() {
@@ -141,5 +141,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     actualizarTabla();
-    setInterval(actualizarTabla, 3000);
+    setInterval(actualizarTabla, 4000);
 });
