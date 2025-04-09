@@ -49,16 +49,16 @@ def procesar_datos(data):
 
     return {
         mes: {
-            'max': max(vals['waterlevel']) if vals['waterlevel'] else "Sin datos",
-            'min': min(vals['waterlevel']) if vals['waterlevel'] else "Sin datos",
-            'promedio': round(np.mean(vals['waterlevel']), 2) if vals['waterlevel'] else "Sin datos",
-            'max_rain': max(vals['rainlevel']) if vals['rainlevel'] else "Sin datos",
-            'min_rain': min(vals['rainlevel']) if vals['rainlevel'] else "Sin datos",
-            'promedio_rain': round(np.mean(vals['rainlevel']), 2) if vals['rainlevel'] else "Sin datos",
-            'top5_max': top_5_unique(vals['waterlevel'], reverse=True),
-            'top5_min': top_5_unique(vals['waterlevel']),
-            'top5_max_rain': top_5_unique(vals['rainlevel'], reverse=True),
-            'top5_min_rain': top_5_unique(vals['rainlevel'])
+            'max': f"{max(vals['waterlevel'])}%" if vals['waterlevel'] else "Sin datos",
+            'min': f"{min(vals['waterlevel'])}%" if vals['waterlevel'] else "Sin datos",
+            'promedio': f"{round(np.mean(vals['waterlevel']), 2)}%" if vals['waterlevel'] else "Sin datos",
+            'max_rain': f"{max(vals['rainlevel'])}%" if vals['rainlevel'] else "Sin datos",
+            'min_rain': f"{min(vals['rainlevel'])}%" if vals['rainlevel'] else "Sin datos",
+            'promedio_rain': f"{round(np.mean(vals['rainlevel']), 2)}%" if vals['rainlevel'] else "Sin datos",
+            'top5_max': [f"{v}%" for v in top_5_unique(vals['waterlevel'], reverse=True)],
+            'top5_min': [f"{v}%" for v in top_5_unique(vals['waterlevel'])],
+            'top5_max_rain': [f"{v}%" for v in top_5_unique(vals['rainlevel'], reverse=True)],
+            'top5_min_rain': [f"{v}%" for v in top_5_unique(vals['rainlevel'])]
         } for mes, vals in reportes.items()
     }
 
@@ -77,7 +77,7 @@ def obtener_reportes():
 @reports_db.route('/reportes')
 @login_required
 def reportes():
-    return render_template('reportes.html', reportes=obtener_reportes())
+    return render_template('reportes.html')
 
 @reports_db.route('/descargar-pdf')
 @login_required
@@ -144,3 +144,8 @@ def descargar_pdf():
     response = Response(pdf.output(dest='S').encode('latin1'), content_type='application/pdf')
     response.headers['Content-Disposition'] = 'attachment; filename=reportes_mensuales.pdf'
     return response
+
+@reports_db.route('/api/reportes')
+@login_required
+def api_reportes():
+    return obtener_reportes()

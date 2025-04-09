@@ -80,24 +80,8 @@
                                     <th>Promedio de Lluvia</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {% if reportes %}
-                                    {% for mes, valores in reportes.items() %}
-                                        <tr>
-                                            <td>{{ mes }}</td>
-                                            <td>{{ valores.max }}</td>
-                                            <td>{{ valores.min }}</td>
-                                            <td>{{ valores.promedio }}</td>
-                                            <td>{{ valores.max_rain }}</td>
-                                            <td>{{ valores.min_rain }}</td>
-                                            <td>{{ valores.promedio_rain }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
-                                    <tr>
-                                        <td colspan="7" class="text-center">No hay datos disponibles para mostrar.</td>
-                                    </tr>
-                                {% endif %}
+                            <tbody id="tabla-datos">
+                                <!-- Se llenará con JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -107,14 +91,50 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('loading').style.display = 'block';
-
-            setTimeout(function() {
-                document.getElementById('loading').style.display = 'none';
-
-                document.getElementById('reportes-table').style.display = 'table';
-            }, 3000);
+        document.addEventListener("DOMContentLoaded", function () {
+            const loading = document.getElementById('loading');
+            const table = document.getElementById('reportes-table');
+            const tbody = table.querySelector('tbody');
+    
+            loading.style.display = 'block';
+    
+            fetch('/api/reportes')
+                .then(response => response.json())
+                .then(data => {
+                    loading.style.display = 'none';
+    
+                    if (Object.keys(data).length === 0) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="7" class="text-center">No hay datos disponibles para mostrar.</td>
+                            </tr>`;
+                    } else {
+                        for (const mes in data) {
+                            const fila = `
+                                <tr>
+                                    <td>${mes}</td>
+                                    <td>${data[mes].max}</td>
+                                    <td>${data[mes].min}</td>
+                                    <td>${data[mes].promedio}</td>
+                                    <td>${data[mes].max_rain}</td>
+                                    <td>${data[mes].min_rain}</td>
+                                    <td>${data[mes].promedio_rain}</td>
+                                </tr>`;
+                            tbody.innerHTML += fila;
+                        }
+                    }
+    
+                    table.style.display = 'table';
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    console.error("Error al cargar los reportes:", error);
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="text-center text-danger">Error al cargar los datos.</td>
+                        </tr>`;
+                    table.style.display = 'table';
+                });
         });
     </script>
 
