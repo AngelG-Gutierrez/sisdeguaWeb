@@ -234,29 +234,36 @@ document.addEventListener("DOMContentLoaded", function () {
     botonFiltrar.addEventListener("click", async () => {
         const inicio = new Date(inicioInput.value);
         const fin = new Date(finInput.value);
-
+    
         if (!inicio || !fin || (fin - inicio > 28 * 24 * 60 * 60 * 1000)) {
             alert("Selecciona fechas válidas (máx. 28 días).");
             return;
         }
-
+    
+        const spinner = document.getElementById("spinner-grafica3");
+        const canvas = document.getElementById("miGrafica3");
+    
+        // Mostrar spinner y ocultar gráfica al presionar el botón
+        spinner.style.display = "inline-block";
+        canvas.style.display = "none";
+    
         try {
             const res = await fetch("/api/tablee");
             const data = await res.json();
-
+    
             const filtrados = data.filter((registro) => {
                 const fecha = new Date(registro.fecha);
                 return fecha >= inicio && fecha <= fin;
             });
-
+    
             const fechas = filtrados.map((r) => new Date(r.fecha).toLocaleDateString());
             const agua = filtrados.map((r) => r.nivel_agua);
             const lluvia = filtrados.map((r) => r.nivel_lluvia);
-
+    
             if (grafica) {
                 grafica.destroy();
             }
-
+    
             grafica = new Chart(ctx, {
                 type: "line",
                 data: {
@@ -306,9 +313,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         } catch (error) {
             console.error("Error al obtener o graficar los datos:", error);
+            alert("Ocurrió un error al cargar los datos.");
+        } finally {
+            // Ocultar spinner y mostrar gráfica al terminar
+            spinner.style.display = "none";
+            canvas.style.display = "block";
         }
     });
-
-
 
 });
