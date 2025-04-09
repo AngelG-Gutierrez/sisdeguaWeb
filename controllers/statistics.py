@@ -11,12 +11,12 @@ app = Flask(__name__, template_folder=os.path.join('templates'))
 @statistics_db.route('/statistics', methods=['GET', 'POST'])
 @login_required
 def statistics():
-    astra = AstraDB()
-    datos_actuales = astra.get_data_real()
-    datos_historicos = astra.get_sensor_data()
-    return render_template('estadisticas.html',
-    datos_actuales=datos_actuales,
-    datos_historicos=datos_historicos)
+    #astra = AstraDB()
+    #datos_actuales = astra.get_data_real()
+    #datos_historicos = astra.get_sensor_data()
+    return render_template('estadisticas.html')
+    #datos_actuales=datos_actuales,
+    #datos_historicos=datos_historicos)
 
 @statistics_db.route('/api/table', methods=['GET'])
 @login_required
